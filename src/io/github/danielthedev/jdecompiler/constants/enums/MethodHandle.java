@@ -1,5 +1,7 @@
 package io.github.danielthedev.jdecompiler.constants.enums;
 
+import java.util.stream.Stream;
+
 public enum MethodHandle {
 	
 	REF_GETFIELD(1),
@@ -19,5 +21,7 @@ public enum MethodHandle {
 		this.index = index;
 	}
 	
-	
+	public static MethodHandle getByID(int id) {
+		return Stream.of(values()).filter(s->s.index == id).findFirst().get();
+	}
 }

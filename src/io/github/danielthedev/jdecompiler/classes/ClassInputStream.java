@@ -1,4 +1,4 @@
-package io.github.danielthedev.jdecompiler;
+package io.github.danielthedev.jdecompiler.classes;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,36 +12,32 @@ public class ClassInputStream extends InputStream {
 		this.in = in;
 	}
 	
-	public Number read(int size) throws IOException {
-		if(size > 8 || size < 0) {
-			
-		}
-		
-		long number = 0;
-		
-		for(int t = 0; t < size; t++) {
-			
-			int read = this.read();
-			number |= (read << ((size - t - 1) * 8));
-		}
-		
-		return switch (size) {
-			case 1: {
-				yield (byte)number;
-			}
-			case 2: {
-				yield (short)number;
-			}
-			case 3, 4: {
-				yield (int)number;
-			}
-			case 5, 6, 7, 8: {
-				yield (long)number;
-			}
-			default: {
-				yield null;
-			}
-		};
+	public byte readByte() throws IOException {
+		return (byte) this.read();
+	}
+	
+	public short readShort() throws IOException {
+		return (short) ((this.read() << 16) | this.read());
+	}
+	
+	public int readInteger() throws IOException {
+		return (this.read() << 24) | (this.read() << 16) | (this.read() << 8) | this.read();
+	}
+	
+	public float readFloat() throws IOException {
+		return (this.read() << 24) | (this.read() << 16) | (this.read() << 8) | this.read();
+	}
+	
+	public short readUnsignedByte() throws IOException {
+		return (short) (0xff & this.read());
+	}
+	
+	public int readUnsignedShort() throws IOException {
+		return (int) (0xffff & ((this.read() << 8) | this.read()));
+	}
+	
+	public long readUnsignedInt() throws IOException {
+		return (long) (0xffffffff & ((this.read() << 24) | (this.read() << 16) | (this.read() << 8) | this.read()));
 	}
 	
 	@Override
