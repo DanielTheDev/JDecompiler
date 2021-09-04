@@ -1,14 +1,14 @@
-package io.github.danielthedev.jdecompiler.classes;
+package io.github.danielthedev.jdecompiler;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class ClassInputStream extends InputStream {
+public class JClassInputStream extends InputStream {
 
 	private final InputStream in;
 
-	public ClassInputStream(InputStream in) {
+	public JClassInputStream(InputStream in) {
 		this.in = in;
 	}
 	
@@ -16,8 +16,8 @@ public class ClassInputStream extends InputStream {
 		return (byte) this.read();
 	}
 	
-	public short readShort() throws IOException {
-		return (short) ((this.read() << 16) | this.read());
+	public int readShort() throws IOException {
+		return (int) ((this.read() << 16) | this.read());
 	}
 	
 	public int readInteger() throws IOException {
