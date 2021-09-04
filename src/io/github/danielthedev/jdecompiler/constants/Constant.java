@@ -4,12 +4,15 @@ public abstract class Constant {
 	
 	public static class Class extends Constant {
 		
-		private int name_index;
+		private final int name_index;
 
 		public Class(int name_index) {
 			this.name_index = name_index;
 		}
-		
+
+		public int getName_index() {
+			return name_index;
+		}
 		
 	}
 	
@@ -117,18 +120,16 @@ public abstract class Constant {
 	
 	public static class Utf8 extends Constant {
 		
-		private java.lang.String string;
+		private final java.lang.String string;
 
 		public Utf8(java.lang.String string) {
 			this.string = string;
 		}
 
-		@Override
-		public java.lang.String toString() {
-			return "Utf8 [string=" + string + "]";
+		public java.lang.String getString() {
+			return string;
 		}
-		
-		
+
 	}
 	
 	public static class MethodHandle extends Constant {

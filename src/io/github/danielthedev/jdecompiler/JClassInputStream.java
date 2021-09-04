@@ -24,6 +24,10 @@ public class JClassInputStream extends InputStream {
 		return (this.read() << 24) | (this.read() << 16) | (this.read() << 8) | this.read();
 	}
 	
+	public long readLong() throws IOException {
+		return (this.read() << 56) | (this.read() << 48) | (this.read() << 40) | (this.read() << 32) | (this.read() << 24) | (this.read() << 16) | (this.read() << 8) | this.read();
+	}
+	
 	public float readFloat() throws IOException {
 		return (this.read() << 24) | (this.read() << 16) | (this.read() << 8) | this.read();
 	}

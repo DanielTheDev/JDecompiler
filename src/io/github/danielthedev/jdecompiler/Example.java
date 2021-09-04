@@ -16,11 +16,11 @@ public class Example {
 		try(ZipFile zip = new ZipFile(file)) {
 			zip.entries().asIterator().forEachRemaining(entry->{
 				if(entry.getName().endsWith("com/mojang/brigadier/tree/CommandNode.class")) {
-					System.out.println(entry);
+					
 					try(JClassInputStream in = new JClassInputStream(zip.getInputStream(entry))) {
 						
 						ClassFile cfile = new ClassFile(in);
-						
+						cfile.printClass();
 					} catch (Exception e) {
 						System.err.println(entry);
 						e.printStackTrace();
