@@ -1,27 +1,32 @@
 package io.github.danielthedev.jdecompiler.fields;
 
-import java.util.Arrays;
+import java.util.List;
 
 import io.github.danielthedev.jdecompiler.AccessFlag;
-import io.github.danielthedev.jdecompiler.Reference;
-import io.github.danielthedev.jdecompiler.constants.CONSTANT_UTF8;
+import io.github.danielthedev.jdecompiler.attributes.Attribute;
+import io.github.danielthedev.jdecompiler.constants.Constant;
+import io.github.danielthedev.jdecompiler.constants.Constant.Utf8;
 
 public class Field {
 
-	private final AccessFlag[] accessflags;
-	private final Reference<CONSTANT_UTF8> name;
-	private final Reference<CONSTANT_UTF8> description;
+	private List<AccessFlag.Field> access_flags;
 	
-	public Field(AccessFlag[] accessflags, Reference<CONSTANT_UTF8> name, Reference<CONSTANT_UTF8> description) {
-		this.accessflags = accessflags;
-		this.name = name;
-		this.description = description;
+	private Constant.Utf8 this_class;
+	private Constant.Utf8 descriptor_index;
+	
+	private List<? extends Attribute> attributes;
+
+	public Field(List<AccessFlag.Field> access_flags, Utf8 this_class, Utf8 descriptor_index, List<? extends Attribute> attributes) {
+		this.access_flags = access_flags;
+		this.this_class = this_class;
+		this.descriptor_index = descriptor_index;
+		this.attributes = attributes;
 	}
 
 	@Override
 	public String toString() {
-		return "Field [accessflags=" + Arrays.toString(accessflags) + ", name=" + name + ", description=" + description
-				+ "]";
+		return "Field [access_flags=" + access_flags + ", this_class=" + this_class + ", descriptor_index="
+				+ descriptor_index + ", attributes=" + attributes + "]";
 	}
 	
 	
