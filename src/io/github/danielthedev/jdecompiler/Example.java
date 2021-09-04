@@ -25,6 +25,7 @@ public class Example {
 					try {
 						ClassFile cfile = ClassFile.fromInputStream(zip.getInputStream(entry));
 						System.out.println(cfile + "");
+						
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
